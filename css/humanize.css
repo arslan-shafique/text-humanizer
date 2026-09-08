@@ -1,0 +1,107 @@
+/* ============================================================
+   humanize.css — overrides for the Humanizer page
+   Loads on top of style.css so both tools share one design system.
+   ============================================================ */
+
+main.narrow { max-width: 760px; }
+
+/* ---------- input ---------- */
+.pane { margin-bottom: 16px; }
+
+#hInput {
+  display: block; width: 100%; height: 260px; resize: vertical;
+  border: 0; outline: none; padding: 17px 19px;
+  background: transparent; color: var(--ink);
+  font-family: var(--sans); font-size: 15px; line-height: 1.75;
+}
+#hInput::placeholder { color: var(--faint); }
+
+/* ---------- controls ---------- */
+.controls { margin-bottom: 16px; }
+
+.crow {
+  display: flex; align-items: center; gap: 14px;
+  padding: 11px 18px;
+}
+.crow + .crow { border-top: 1px solid var(--line); }
+
+.crow-label {
+  flex: none; width: 92px;
+  font-size: 12.5px; color: var(--muted);
+}
+
+.controls .segmented {
+  display: inline-flex; gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--sunken);
+  flex-wrap: wrap;
+}
+
+.lvl, .slip, .tone {
+  border: 0; background: transparent;
+  color: var(--muted);
+  font: inherit; font-size: 12.5px;
+  padding: 5px 12px; border-radius: 7px;
+  cursor: pointer; white-space: nowrap;
+  transition: color .15s, background .15s;
+}
+.lvl:hover, .slip:hover, .tone:hover { color: var(--ink); }
+.lvl.is-active, .slip.is-active, .tone.is-active {
+  background: var(--surface); color: var(--ink); font-weight: 550;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.crow-keep { align-items: flex-start; gap: 12px; }
+.crow-keep .chk { flex: none; padding-top: 1px; }
+.keep-note {
+  font-size: 11.5px; color: var(--faint);
+  line-height: 1.55; max-width: 52ch;
+}
+
+/* ---------- run bar ---------- */
+.runbar {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.level-note {
+  font-size: 12px; color: var(--faint);
+  margin-left: auto; text-align: right; max-width: 46ch;
+}
+
+/* ---------- result ---------- */
+.result .output { height: auto; min-height: 150px; max-height: 460px; }
+.result .output:empty::before { content: "Your humanized text will appear here."; }
+
+.download-foot { gap: 10px 14px; }
+.dl { display: inline-flex; align-items: center; gap: 3px; flex-wrap: wrap; }
+.dl-label {
+  font-size: 11.5px; color: var(--faint);
+  margin-right: 4px;
+}
+.dl-btn {
+  font-family: var(--mono); font-size: 11.5px;
+  padding: 3px 8px;
+}
+
+/* ---------- hint ---------- */
+.hint {
+  margin: 26px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 12.5px; color: var(--faint);
+  line-height: 1.65;
+}
+.hint a { color: var(--muted); text-underline-offset: 3px; }
+.hint a:hover { color: var(--ink); }
+
+@media (max-width: 620px) {
+  .level-note { margin-left: 0; width: 100%; text-align: left; max-width: none; }
+  .runbar { gap: 10px; }
+  .switch a { display: none; }
+  /* stack each control under its own label */
+  .crow { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .crow-label { width: auto; }
+  .crow-keep { gap: 6px; }
+}
